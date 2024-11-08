@@ -9,7 +9,6 @@ class BaseStation(models.Model):
     recorded_at = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
-    # Common operational status with choices unified to cover both
     OPERATIONAL_STATUSES = [
         ("operational", "Operational"),
         ("maintenance", "Maintenance"),
