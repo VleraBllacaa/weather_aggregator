@@ -90,3 +90,25 @@ This system handles different types of weather stations, each providing data in 
     ```bash
     python manage.py test
     ```
+
+### Adding a new Weather Station
+
+To add a new weather station:
+
+1. Create a new app with the weather station type name:
+
+    ```bash
+    python manage.py startapp <weather_type_name>
+    ```
+
+2. Define the model:
+
+    - Inherit from `BaseStation` in your new model within the app's `models.py`
+    - Customize fields and methods specific to this weather station type
+    - Register the app in `settings.py`, add it in `INSTALLED_APPS`
+    - Run migrations
+
+3. Customization
+
+    - Fields: Extend or override fields in the inherited model to add details specific to each weather station type
+    - API Endpoints: Define custom views and serializers for the new weather station app to expose its data via the API
