@@ -158,8 +158,8 @@ def get_historical_data(request, city_name):
         city=city_name, created_at__range=[start_date, end_date]
     )
     masterx_data = WeatherMasterXData.objects.filter(
-        location__city_name=city_name, created_at__range=[start_date, end_date]
-    )
+        city=city_name, created_at__range=[start_date, end_date]
+    ).select_related("location", "readings", "location__coordinates")
 
     weather_data.extend(meteo_data)
     weather_data.extend(masterx_data)

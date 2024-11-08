@@ -97,6 +97,8 @@ def get_weather_data_by_city(request, city_name):
     }
     ]
     """
-    weather_data = WeatherMasterXData.objects.filter(city=city_name)
+    weather_data = WeatherMasterXData.objects.filter(city=city_name).select_related(
+        "location", "readings", "location__coordinates"
+    )
     serializer = WeatherMasterXDataSerializer(weather_data, many=True)
     return Response(serializer.data)
