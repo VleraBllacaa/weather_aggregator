@@ -17,9 +17,9 @@ This system handles different types of weather stations, each providing data in 
 
     ```bash
     python -m venv .venv
-    ``` 
+    ```
     4. Activate the virtual environment:
-    
+
         On Windows:
         ```bash
         .venv\Scripts\activate
@@ -29,7 +29,7 @@ This system handles different types of weather stations, each providing data in 
         ```bash
         source .venv/bin/activate
         ```
-    
+
     5. In case you need to deactivate your virtual environment you run `deactivate` in your terminal
 
 - Step 2: Install Poetry (if not already installed)
@@ -66,7 +66,7 @@ This system handles different types of weather stations, each providing data in 
 - Create a superuser (Optional)
 
     To create an admin user for accessing the Django admin panel, run:
-    
+
     ```bash
     python manage.py createsuperuser
     ```

@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "6d5bcc9e-14e3-4205-96f8-486adc99fbc6",
+		"name": "Weather Aggregator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20676271"
+	},
+	"item": [
+		{
+			"name": "Create Bulgarian Meteo Pro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bulgarian_meteo_pro/weather-data/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bulgarian_meteo_pro",
+						"weather-data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Weather Master X",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bulgarian_meteo_pro/weather-data/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bulgarian_meteo_pro",
+						"weather-data",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Historical Data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/stations/weather-data/historical/Sofia?start_date=2024-11-01&end_date=2024-11-09",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"stations",
+						"weather-data",
+						"historical",
+						"Sofia"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2024-11-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2024-11-09"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Weather Data\u001d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/stations/weather-data/Sofia",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"stations",
+						"weather-data",
+						"Sofia"
+					],
+					"query": [
+						{
+							"key": "Do you need name this song, Sophia?",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Bulgarian Meteo Pro",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/bulgarian_meteo_pro/weather-data/Sofia/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"bulgarian_meteo_pro",
+						"weather-data",
+						"Sofia",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Weather Master X",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/weather_master_x/weather-data/Plovdiv/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"weather_master_x",
+						"weather-data",
+						"Plovdiv",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

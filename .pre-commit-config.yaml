@@ -1,0 +1,21 @@
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0  # Use the latest version
+    hooks:
+      - id: trailing-whitespace  # Removes trailing whitespace
+      - id: end-of-file-fixer    # Ensures files end with a newline
+
+
+  - repo: https://github.com/psf/black
+    rev: 23.1.0  # Use the latest version
+    hooks:
+      - id: black  # Auto-formats Python code using Black
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0  # Use the latest version
+    hooks:
+      - id: flake8  # Linting for Python code
+        args: [--max-line-length=100,
+               --exclude= */migrations/*
+               ]
