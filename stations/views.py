@@ -14,7 +14,10 @@ def get_weather_data_by_city(request, city_name):
     Retrieve paginated weather data for a specific city
     regardless of station type.
 
-    **Endpoint**: GET /stations/weather-data/{city_name}/
+    **Endpoint**: GET /stations/weather-data/{city_name}?page=1
+
+    - `page`: Page number for paginated results
+    - `city_name`: Name of the city to retrieve weather data for
 
     ### Response Example
     ```json
@@ -22,39 +25,37 @@ def get_weather_data_by_city(request, city_name):
         "page": 1,
         "pages": 1,
         "total_items": 5,
-        "weather_data": [
-            {
-                "station_id": "ST123",
-                "city": "Sample City",
-                "latitude": 42.0,
-                "longitude": 23.0,
-                "timestamp": "2024-11-08T14:00:00Z",
-                "temperature_celsius": "15.50",
-                "temperature_fahrenheit": "59.90",
-                "humidity_percent": "75.00",
-                "wind_speed_kph": "12.50",
-                "station_status": "active",
-                "operational_status": null,
-                "pressure_hpa": null,
-                "uv_index": null,
-                "rain_mm": null
-            },
-            {
-                "station_id": "Station1",
-                "city": "Some City",
-                "latitude": 48.12,
-                "longitude": 21.32,
-                "temperature_celsius": "24.00",
-                "temperature_fahrenheit": "75.20",
-                "humidity_percent": "59.00",
-                "wind_speed_kph": "null",
-                "pressure_hpa": "1013.25",
-                "uv_index": "2",
-                "rain_mm": "0.00",
-                "timestamp": "2024-09-24T10:20:45Z",
-                "station_status": null,
-                "operational_status": "operational"
-            }
+        "data": [
+        {
+            "station_id": "STATION-001",
+            "city": "Sample City",
+            "latitude": 42.6977,
+            "longitude": 23.3219,
+            "temperature_celsius": 22.5,
+            "temperature_fahrenheit": 72.5,
+            "humidity_percent": 65.0,
+            "wind_speed_kph": 14.3,
+            "timestamp": "2024-09-24T10:15:30Z",
+            "station_status": "operational",
+            "pressure_hpa": null,
+            "uv_index": null,
+            "rain_mm": null
+        },
+                {
+            "station_id": "STATION-001",
+            "city": "Sample City",
+            "latitude": 42.6977,
+            "longitude": 23.3219,
+            "temperature_celsius": 22.5,
+            "temperature_fahrenheit": 72.5,
+            "humidity_percent": 65.0,
+            "wind_speed_kph": 14.3,
+            "timestamp": "2024-09-24T10:15:30Z",
+            "station_status": "operational",
+            "pressure_hpa": null,
+            "uv_index": null,
+            "rain_mm": null
+        }
         ]
     }
     ```
@@ -91,53 +92,58 @@ def get_weather_data_by_city(request, city_name):
 @api_view(["GET"])
 def get_historical_data(request, city_name):
     """
-    Retrieve paginated historical weather data for a specific city regardless of station type.
+     Retrieve paginated historical weather data for a specific city regardless of station type.
 
-    **Endpoint**: GET
-    /stations/historical-data/{city_name}?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD
+     **Endpoint**: GET
+     /stations/historical-data/{city_name}?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD&page=number
+
+     - `city_name`: Name of the city to retrieve weather data for
+     - `start_date`: Start date for historical data in format `YYYY-MM-DD`
+     - `end_date`: End date for historical data in format `YYYY-MM-DD`
+     - `page`: Page number for paginated results
 
     ### Response Example
 
-    ```json
-    {
-        "page": 1,
-        "pages": 1,
-        "total_items": 5,
-        "data": [
-            {
-                "station_id": "ST123",
-                "city": "Sample City",
-                "latitude": 42.0,
-                "longitude": 23.0,
-                "timestamp": "2024-11-08T14:00:00Z",
-                "temperature_celsius": "15.50",
-                "temperature_fahrenheit": "59.90",
-                "humidity_percent": "75.00",
-                "wind_speed_kph": "12.50",
-                "station_status": "active",
-                "operational_status": null,
-                "pressure_hpa": null,
-                "uv_index": null,
-                "rain_mm": null
-            },
-            {
-                "station_id": "Station1",
-                "city": "Some City",
-                "latitude": 48.12,
-                "longitude": 21.32,
-                "temperature_celsius": "24.00",
-                "temperature_fahrenheit": "75.20",
-                "humidity_percent": "59.00",
-                "wind_speed_kph": "null",
-                "pressure_hpa": "1013.25",
-                "uv_index": "2",
-                "rain_mm": "0.00",
-                "timestamp": "2024-09-24T10:20:45Z",
-                "station_status": null,
-                "operational_status": "operational"
-            }
-        ]
-    }
+     ```json
+     {
+         "page": 1,
+         "pages": 1,
+         "total_items": 5,
+         "data": [
+             {
+                 "station_id": "ST123",
+                 "city": "Sample City",
+                 "latitude": 42.0,
+                 "longitude": 23.0,
+                 "timestamp": "2024-11-08T14:00:00Z",
+                 "temperature_celsius": "15.50",
+                 "temperature_fahrenheit": "59.90",
+                 "humidity_percent": "75.00",
+                 "wind_speed_kph": "12.50",
+                 "station_status": "active",
+                 "operational_status": null,
+                 "pressure_hpa": null,
+                 "uv_index": null,
+                 "rain_mm": null
+             },
+             {
+                 "station_id": "Station1",
+                 "city": "Some City",
+                 "latitude": 48.12,
+                 "longitude": 21.32,
+                 "temperature_celsius": "24.00",
+                 "temperature_fahrenheit": "75.20",
+                 "humidity_percent": "59.00",
+                 "wind_speed_kph": "null",
+                 "pressure_hpa": "1013.25",
+                 "uv_index": "2",
+                 "rain_mm": "0.00",
+                 "timestamp": "2024-09-24T10:20:45Z",
+                 "station_status": null,
+                 "operational_status": "operational"
+             }
+         ]
+     }
     """
 
     start_date = request.query_params.get("start_date")

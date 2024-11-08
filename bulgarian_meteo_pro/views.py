@@ -56,6 +56,8 @@ def get_weather_data_by_city(request, city_name):
 
     **Endpoint**: GET /bulgarian_meteo_pro/weather-data/{city_name}/
 
+    - `city_name`: Name of the city to retrieve weather data for
+
     ### Response Example
     ```json
     {

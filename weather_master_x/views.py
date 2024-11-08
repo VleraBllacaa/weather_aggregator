@@ -72,6 +72,8 @@ def get_weather_data_by_city(request, city_name):
 
     **Endpoint**: GET /weather_master_x/weather-data/{city_name}/
 
+    - `city_name`: Name of the city to retrieve weather data for
+
     ### Response Example
 
     ```json
