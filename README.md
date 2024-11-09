@@ -112,3 +112,9 @@ To add a new weather station:
 
     - Fields: Extend or override fields in the inherited model to add details specific to each weather station type
     - API Endpoints: Define custom views and serializers for the new weather station app to expose its data via the API
+
+
+### Approach
+
+My approach was to create a base model that each weather station model could inherit from, allowing for shared fields and structure across different station types. Using serializers, I managed the field mapping for each station, ensuring they align with desired unified format. The list endpoints, regardless of station type, return a standardized, paginated response and I introduced a temperature type parameter in the serializer to handle conversion (Celcius to Fahrenheit and vice versa). This way, data conversion occurrs within the serializer, keeping the data clean and consistent at the endpoint level.
+The historical endpoint helps you to filter data within a timeframe based on a selected city.
