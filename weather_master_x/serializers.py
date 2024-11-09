@@ -40,6 +40,7 @@ class WeatherMasterXDataSerializer(serializers.ModelSerializer):
             "recorded_at",
             "readings",
             "operational_status",
+            "created_at",
         ]
 
     def create(self, validated_data):

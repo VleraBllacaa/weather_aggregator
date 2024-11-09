@@ -46,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"raw": "{\n  \"station_identifier\": \"WX-3456\",\n  \"location\": {\n    \"city_name\": \"Plovdiv\",\n    \"coordinates\": {\n      \"lat\": 42.1354,\n      \"lon\": 24.7453\n} },\n  \"recorded_at\": \"2024-09-24T10:20:45Z\",\n  \"readings\": {\n    \"temp_fahrenheit\": 73.4,\n    \"humidity_percent\": 58.0,\n    \"pressure_hpa\": 1012.3,\n    \"uv_index\": 5,\n    \"rain_mm\": 0.0\n  },\n  \"operational_status\": \"operational\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,7 +54,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/bulgarian_meteo_pro/weather-data/",
+					"raw": "http://127.0.0.1:8000/weather_master_x/weather-data/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -64,7 +64,7 @@
 					],
 					"port": "8000",
 					"path": [
-						"bulgarian_meteo_pro",
+						"weather_master_x",
 						"weather-data",
 						""
 					]
@@ -156,6 +156,53 @@
 							"key": "Do you need name this song, Sophia?",
 							"value": null,
 							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Weather Data\u001d TempType",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"station_id\": \"BG-STATION-001\",\n    \"city\": \"Sofia\",\n    \"latitude\": 42.6977,\n    \"longitude\": 23.3219,\n    \"timestamp\": \"2024-09-24T10:15:30Z\",\n    \"temperature_celsius\": 22.5,\n    \"humidity_percent\": 65.0,\n    \"wind_speed_kph\": 14.3,\n    \"station_status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/stations/weather-data/Sofia?temperature_type=fahrenheit",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"stations",
+						"weather-data",
+						"Sofia"
+					],
+					"query": [
+						{
+							"key": "Do you need name this song, Sophia?",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "temperature_type",
+							"value": "fahrenheit"
 						}
 					]
 				}

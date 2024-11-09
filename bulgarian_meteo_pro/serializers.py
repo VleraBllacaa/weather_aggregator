@@ -25,4 +25,5 @@ class BulgarianMeteoProDataSerializer(serializers.ModelSerializer):
             "wind_speed_kph",
             "timestamp",
             "station_status",
+            "created_at",
         ]

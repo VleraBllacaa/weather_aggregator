@@ -70,6 +70,32 @@ class WeatherDataByCityTests(APITestCase):
         )
         self.assertEqual(response.data["total_items"], total_items)
 
+    def test_get_weather_data_by_city_invalid_temperature_type(self):
+        response = self.client.get(f"{self.url}?temperature_type=invalid")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("error", response.data)
+
+    def test_get_weather_data_by_city_with_temperature_type(self):
+        response = self.client.get(f"{self.url}?temperature_type=fahrenheit")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("page", response.data)
+        self.assertIn("pages", response.data)
+        self.assertIn("total_items", response.data)
+        self.assertIn("data", response.data)
+
+        total_items = (
+            BulgarianMeteoProData.objects.filter(city=self.city_name).count()
+            + WeatherMasterXData.objects.filter(
+                location__city_name=self.city_name
+            ).count()
+        )
+        self.assertEqual(response.data["total_items"], total_items)
+
+        # Check if the temperature is in Fahrenheit
+        for item in response.data["data"]:
+            self.assertIn("temperature", item)
+            self.assertNotIn("temperature_celsius", item)
+
     def test_get_weather_data_by_city_no_data(self):
         no_data_url = reverse("ST_get_weather_data_by_city", args=["NonExistentCity"])
         response = self.client.get(no_data_url)
@@ -86,7 +112,7 @@ class WeatherDataByCityTests(APITestCase):
                 city=self.city_name,
                 latitude=42.0,
                 longitude=23.0,
-                recorded_at=f"2024-11-08T{i:02}:00:00Z",
+                recorded_at=f"2024-11-08T{i:02}:00:00Z",  # noqa
                 temperature_celsius="20.0",
                 humidity_percent="60.0",
                 wind_speed_kph="10.0",
@@ -191,3 +217,36 @@ class WeatherDataByCityTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["page"], 2)
         self.assertEqual(len(response.data["data"]), 5)
+
+    def test_get_historical_data_invalid_temperature_type(self):
+        response = self.client.get(
+            f"{self.historical_url}?start_date={self.start_date}&end_date={self.end_date}&temperature_type=invalid"  # noqa
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("error", response.data)
+
+    def test_get_historical_data_with_temperature_type(self):
+        response = self.client.get(
+            f"{self.historical_url}?start_date={self.start_date}&end_date={self.end_date}&temperature_type=fahrenheit"  # noqa
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("page", response.data)
+        self.assertIn("pages", response.data)
+        self.assertIn("total_items", response.data)
+        self.assertIn("data", response.data)
+
+        total_items = (
+            BulgarianMeteoProData.objects.filter(
+                city=self.city_name, created_at__range=[self.start_date, self.end_date]
+            ).count()
+            + WeatherMasterXData.objects.filter(
+                location__city_name=self.city_name,
+                created_at__range=[self.start_date, self.end_date],
+            ).count()
+        )
+        self.assertEqual(response.data["total_items"], total_items)
+
+        # Check if the temperature is in Fahrenheit
+        for item in response.data["data"]:
+            self.assertIn("temperature", item)
+            self.assertNotIn("temperature_celsius", item)
